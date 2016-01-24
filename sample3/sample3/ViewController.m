@@ -32,14 +32,14 @@
 	
 	for (NSLayoutConstraint *constraint in self.view.constraints) {
 		if (constraint.firstAttribute == NSLayoutAttributeCenterX) {
-			constraint.constant = 100.0f;
+			constraint.constant = 180.0f;
 			break;
 		}
 	}
 
 	[UIView animateWithDuration:4.4
 						  delay:0.0f
-						options:UIViewAnimationOptionAllowUserInteraction
+						options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat)
 					 animations:^(void) {
 						 [self.view layoutIfNeeded];
 					 }
