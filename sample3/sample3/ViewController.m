@@ -39,8 +39,10 @@
 
 	[UIView animateWithDuration:4.4
 						  delay:0.0f
-						options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat)
+						options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAutoreverse
+                                 | UIViewAnimationOptionRepeat)
 					 animations:^(void) {
+                         
 						 [self.view layoutIfNeeded];
 					 }
 					 completion:NULL];
@@ -49,6 +51,17 @@
 
 - (IBAction)buttonTapped:(id)sender {
 	NSLog(@"Tap");
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInView:self.view];
+    if ([self.button.layer.presentationLayer hitTest:touchLocation])
+    {
+        // This button was hit whilst moving - do something with it here
+        NSLog(@"YO");
+    }
 }
 
 @end
