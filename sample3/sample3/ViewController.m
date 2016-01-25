@@ -44,9 +44,21 @@
 					 animations:^(void) {
                          
 						 [self.view layoutIfNeeded];
+                         NSLog(@"%f", [self.button.layer.presentationLayer bounds].origin.x);
+                        
 					 }
 					 completion:NULL];
-	
+    
+    [UIView animateWithDuration:3.0
+                          delay:0.0f
+                        options:UIViewAnimationOptionTransitionFlipFromLeft
+                     animations:^(void) {
+                         if (self.xconstraint.constant == [self.button.layer.presentationLayer bounds].origin.x) {
+                             self.button.transform = CGAffineTransformMakeRotation(M_PI);
+                         }
+                     }
+                     completion:NULL];
+    
 }
 
 - (IBAction)buttonTapped:(id)sender {
@@ -57,10 +69,8 @@
 {
     UITouch *touch = [touches anyObject];
     CGPoint touchLocation = [touch locationInView:self.view];
-    if ([self.button.layer.presentationLayer hitTest:touchLocation])
-    {
-        // This button was hit whilst moving - do something with it here
-        NSLog(@"YO");
+    if ([self.button.layer.presentationLayer hitTest:touchLocation]) {
+        NSLog(@"Tap");
     }
 }
 
