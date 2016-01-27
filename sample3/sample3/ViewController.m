@@ -41,8 +41,10 @@
 						  delay:0.0f
 						options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAutoreverse
                                  | UIViewAnimationOptionRepeat)
-					 animations:^(void) {                         
+					 animations:^(void) {
 						 [self.view layoutIfNeeded];
+//                         CALayer *presentationLayer = self.button.layer.presentationLayer;
+//                         NSLog(@"%f, %f", presentationLayer.position.x, presentationLayer.position.y);
                          self.button.transform = CGAffineTransformMakeRotation(M_PI);
 					 }
 					 completion:NULL];
