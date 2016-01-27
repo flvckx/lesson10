@@ -41,7 +41,8 @@
     
     [UIView beginAnimations:nil
                     context:nil];
-    [UIView setAnimationDuration:4.0f];
+    [UIView setAnimationDelay:4.0f];
+    [UIView setAnimationDuration:1.5f];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationRepeatAutoreverses:YES];
     [UIView setAnimationRepeatCount:CGFLOAT_MAX];
@@ -51,6 +52,8 @@
     [UIView commitAnimations];
     
 }
+
+
 
 - (IBAction)buttonTapped:(id)sender {
 	NSLog(@"Tap");

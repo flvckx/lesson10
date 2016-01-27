@@ -29,30 +29,74 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	
-	for (NSLayoutConstraint *constraint in self.view.constraints) {
-		if (constraint.firstAttribute == NSLayoutAttributeCenterX) {
-			constraint.constant = 180.0f;
-			break;
-		}
-	}
-
-	[UIView animateWithDuration:4.4
-						  delay:0.0f
-						options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAutoreverse
-                                 | UIViewAnimationOptionRepeat)
-					 animations:^(void) {
-						 [self.view layoutIfNeeded];
-//                         CALayer *presentationLayer = self.button.layer.presentationLayer;
-//                         NSLog(@"%f, %f", presentationLayer.position.x, presentationLayer.position.y);
-                         self.button.transform = CGAffineTransformMakeRotation(M_PI);
-					 }
-					 completion:NULL];
     
+    [self buttonMovingToTheRight];
 }
 
 - (IBAction)buttonTapped:(id)sender {
 	NSLog(@"Tap");
+}
+
+- (void) buttonMovingToTheLeft {
+    for (NSLayoutConstraint *constraint in self.view.constraints) {
+        if (constraint.firstAttribute == NSLayoutAttributeCenterX) {
+            constraint.constant = -180.0f;
+            break;
+        }
+    }
+    
+    [UIView animateWithDuration:4.0
+                          delay:0.0f
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^(void) {
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished){
+                         if (finished) {
+                             [UIView animateWithDuration:1.8
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionAllowUserInteraction
+                                              animations:^(void) {
+                                                  self.button.transform = CGAffineTransformMakeRotation(M_PI * 2);
+                                              }
+                                              completion:^(BOOL finished){
+                                                  if (finished) {
+                                                      [self buttonMovingToTheRight];
+                                                    }
+                                              }];
+                         }
+                     }];
+}
+
+- (void) buttonMovingToTheRight {
+    for (NSLayoutConstraint *constraint in self.view.constraints) {
+        if (constraint.firstAttribute == NSLayoutAttributeCenterX) {
+            constraint.constant = 180.0f;
+            break;
+        }
+    }
+    
+    [UIView animateWithDuration:4.0
+                          delay:0.0f
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^(void) {
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished){
+                         if (finished) {
+                             [UIView animateWithDuration:1.8
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionAllowUserInteraction
+                                              animations:^(void) {
+                                                  self.button.transform = CGAffineTransformMakeRotation(M_PI);
+                                              }
+                                              completion:^(BOOL finished){
+                                                  if (finished) {
+                                                      [self buttonMovingToTheLeft];
+                                                  }
+                                              }];
+                         }
+                     }];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
