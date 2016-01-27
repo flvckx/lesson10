@@ -29,31 +29,74 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
     
+    
+    [self buttonMovingToTheRight];
+//    [UIView beginAnimations:nil
+//                    context:nil];
+//    [UIView setAnimationDuration:4.0];
+//    [UIView setAnimationDelegate:self];
+//    [UIView commitAnimations];
+//    [self buttonMovingToTheLeft];
+    
+    
+//    [UIView beginAnimations:nil
+//                    context:nil];
+//    [UIView setAnimationDelay:4.0f];
+//    [UIView setAnimationDuration:1.5f];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationRepeatAutoreverses:YES];
+//    [UIView setAnimationRepeatCount:CGFLOAT_MAX];
+//    
+//    self.button.transform = CGAffineTransformMakeRotation(M_PI);
+//    
+//    [UIView commitAnimations];
+    
+}
+
+- (void) buttonMovingToTheRight {
     CABasicAnimation* pulseAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
     [pulseAnimation setFromValue:[NSValue valueWithCGPoint:self.button.frame.origin]];
-    [pulseAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x+380, self.button.frame.origin.y)]];
+    [pulseAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x+250, self.button.frame.origin.y)]];
     pulseAnimation.duration = 4.0;
-    pulseAnimation.repeatCount = CGFLOAT_MAX;
-    pulseAnimation.autoreverses = YES;
-    pulseAnimation.cumulative = NO;
+    [pulseAnimation setFillMode:kCAFillModeForwards];
+    [pulseAnimation setRemovedOnCompletion:NO];
     [[self.button layer] addAnimation:pulseAnimation forKey:@"position"];
+
+
+    [UIView beginAnimations:nil
+                    context:nil];
+    [UIView setAnimationDelay:4.0f];
+    [UIView setAnimationDuration:1.5f];
+    [UIView setAnimationDelegate:self];
+
+    self.button.transform = CGAffineTransformMakeRotation(M_PI);
+
+    [UIView commitAnimations];
+    [self buttonMovingToTheLeft];
     
+}
+
+- (void) buttonMovingToTheLeft {
+    CABasicAnimation* pulseAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [pulseAnimation setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x+250, self.button.frame.origin.y)]];
+    [pulseAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x, self.button.frame.origin.y)]];
+    
+    pulseAnimation.duration = 4.0;
+    [pulseAnimation setFillMode:kCAFillModeForwards];
+    [pulseAnimation setRemovedOnCompletion:NO];
+    [[self.button layer] addAnimation:pulseAnimation forKey:@"position"];
     
     [UIView beginAnimations:nil
                     context:nil];
     [UIView setAnimationDelay:4.0f];
     [UIView setAnimationDuration:1.5f];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationRepeatAutoreverses:YES];
-    [UIView setAnimationRepeatCount:CGFLOAT_MAX];
     
-    self.button.transform = CGAffineTransformMakeRotation(M_PI);
+    self.button.transform = CGAffineTransformMakeRotation(M_PI * 2);
     
     [UIView commitAnimations];
-    
+   
 }
-
-
 
 - (IBAction)buttonTapped:(id)sender {
 	NSLog(@"Tap");
