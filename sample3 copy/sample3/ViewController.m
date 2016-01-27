@@ -28,74 +28,57 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-    
-    
+    //thanks to madlax19 commits
     [self buttonMovingToTheRight];
-//    [UIView beginAnimations:nil
-//                    context:nil];
-//    [UIView setAnimationDuration:4.0];
-//    [UIView setAnimationDelegate:self];
-//    [UIView commitAnimations];
-//    [self buttonMovingToTheLeft];
-    
-    
-//    [UIView beginAnimations:nil
-//                    context:nil];
-//    [UIView setAnimationDelay:4.0f];
-//    [UIView setAnimationDuration:1.5f];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationRepeatAutoreverses:YES];
-//    [UIView setAnimationRepeatCount:CGFLOAT_MAX];
-//    
-//    self.button.transform = CGAffineTransformMakeRotation(M_PI);
-//    
-//    [UIView commitAnimations];
-    
 }
 
 - (void) buttonMovingToTheRight {
-    CABasicAnimation* pulseAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-    [pulseAnimation setFromValue:[NSValue valueWithCGPoint:self.button.frame.origin]];
-    [pulseAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x+250, self.button.frame.origin.y)]];
-    pulseAnimation.duration = 4.0;
-    [pulseAnimation setFillMode:kCAFillModeForwards];
-    [pulseAnimation setRemovedOnCompletion:NO];
-    [[self.button layer] addAnimation:pulseAnimation forKey:@"position"];
-
-
-    [UIView beginAnimations:nil
-                    context:nil];
-    [UIView setAnimationDelay:4.0f];
-    [UIView setAnimationDuration:1.5f];
+    CGRect rect = self.button.frame;
+    rect.origin.x = self.view.bounds.size.width - self.button.bounds.size.width;
+    [UIView beginAnimations:@"MoveToRight" context:nil];
+    [UIView setAnimationDuration:3.4];
+    [UIView setAnimationDelay:0.0];
     [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(makeFirstRotation)];
 
-    self.button.transform = CGAffineTransformMakeRotation(M_PI);
+    self.button.frame = rect;
 
     [UIView commitAnimations];
-    [self buttonMovingToTheLeft];
-    
+}
+
+- (void) makeFirstRotation {
+    [UIView beginAnimations:@"ButtonRotateFirst" context:nil];
+    [UIView setAnimationDuration:1.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(buttonMovingToTheLeft)];
+
+    self.button.transform = CGAffineTransformRotate(self.button.transform, M_PI);
+    [UIView commitAnimations];
 }
 
 - (void) buttonMovingToTheLeft {
-    CABasicAnimation* pulseAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-    [pulseAnimation setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x+250, self.button.frame.origin.y)]];
-    [pulseAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(self.button.frame.origin.x, self.button.frame.origin.y)]];
-    
-    pulseAnimation.duration = 4.0;
-    [pulseAnimation setFillMode:kCAFillModeForwards];
-    [pulseAnimation setRemovedOnCompletion:NO];
-    [[self.button layer] addAnimation:pulseAnimation forKey:@"position"];
-    
-    [UIView beginAnimations:nil
-                    context:nil];
-    [UIView setAnimationDelay:4.0f];
-    [UIView setAnimationDuration:1.5f];
+    CGRect rect = self.button.frame;
+    rect.origin.x = 0;
+    [UIView beginAnimations:@"MoveToLeft" context:nil];
+    [UIView setAnimationDuration:3.4];
+    [UIView setAnimationDelay:0.0];
     [UIView setAnimationDelegate:self];
-    
-    self.button.transform = CGAffineTransformMakeRotation(M_PI * 2);
-    
+    [UIView setAnimationDidStopSelector:@selector(makeSecondRotation)];
+
+    self.button.frame = rect;
+
     [UIView commitAnimations];
    
+}
+
+- (void) makeSecondRotation {
+    [UIView beginAnimations:@"ButtonRotateFirst" context:nil];
+    [UIView setAnimationDuration:1.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(buttonMovingToTheRight)];
+    
+    self.button.transform = CGAffineTransformRotate(self.button.transform, M_PI);
+    [UIView commitAnimations];
 }
 
 - (IBAction)buttonTapped:(id)sender {
