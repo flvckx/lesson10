@@ -49,6 +49,8 @@
     [_animator addBehavior:itemBehaviour];
     
     [_animator addBehavior:_collision];
+    
+
 }
 
 - (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p {

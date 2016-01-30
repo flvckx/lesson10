@@ -196,7 +196,7 @@
 		7268D76117A001D5002D4C1A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Colin Eberhardt";
 				TargetAttributes = {
 					7268D78917A001D5002D4C1A = {
@@ -319,6 +319,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -377,6 +378,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicsPlayground/DynamicsPlayground-Prefix.pch";
 				INFOPLIST_FILE = "DynamicsPlayground/DynamicsPlayground-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -390,6 +392,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicsPlayground/DynamicsPlayground-Prefix.pch";
 				INFOPLIST_FILE = "DynamicsPlayground/DynamicsPlayground-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -411,6 +414,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "DynamicsPlaygroundTests/DynamicsPlaygroundTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -429,6 +433,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicsPlayground/DynamicsPlayground-Prefix.pch";
 				INFOPLIST_FILE = "DynamicsPlaygroundTests/DynamicsPlaygroundTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.razeware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -454,6 +459,7 @@
 				7268D79D17A001D5002D4C1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7268D79E17A001D5002D4C1A /* Build configuration list for PBXNativeTarget "DynamicsPlaygroundTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +468,7 @@
 				7268D7A017A001D5002D4C1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
